@@ -4,6 +4,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const EMAIL_FROM = process.env.EMAIL_FROM ?? "noreply@example.com";
 
 // App URL used to reference the logo image in emails.
+// test tok
 // In production: set APP_URL=https://tuodominio.it in .env
 // In development: logo won't render in email clients (localhost not accessible)
 const APP_URL = (process.env.APP_URL ?? "").replace(/\/$/, "");
