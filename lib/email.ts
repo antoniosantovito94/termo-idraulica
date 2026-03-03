@@ -1,10 +1,9 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-const EMAIL_FROM = process.env.EMAIL_FROM ?? "noreply@example.com";
+const GMAIL_USER = process.env.GMAIL_USER ?? "";
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD ?? "";
 
 // App URL used to reference the logo image in emails.
-// test tok
 // In production: set APP_URL=https://tuodominio.it in .env
 // In development: logo won't render in email clients (localhost not accessible)
 const APP_URL = (process.env.APP_URL ?? "").replace(/\/$/, "");
@@ -236,15 +235,23 @@ export async function sendConfirmationEmail(
 </html>
   `.trim();
 
-  const { error } = await resend.emails.send({
-    from: EMAIL_FROM,
-    to,
-    subject: "Richiesta ricevuta — ti contatteremo presto",
-    html,
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: GMAIL_USER,
+      pass: GMAIL_APP_PASSWORD,
+    },
   });
 
-  if (error) {
-    // Log but never throw: a Resend failure must not surface as a user error.
+  try {
+    await transporter.sendMail({
+      from: GMAIL_USER,
+      to,
+      subject: "Richiesta ricevuta — ti contatteremo presto",
+      html,
+    });
+  } catch (error) {
+    // Log but never throw: a mail failure must not surface as a user error.
     // The appointment request is already saved in the database.
     console.error("[email] Failed to send confirmation email:", error);
   }
