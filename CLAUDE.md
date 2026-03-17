@@ -14,10 +14,19 @@ Web app per la gestione delle **richieste di appuntamento** di un'azienda termoi
 
 ```
 Browser
+  ├── /                → landing page (Navbar, Hero, Servizi, Vantaggi, CTA, Footer)
   └── /request         → form cliente (React client component)
         │
         └── POST /api/requests          → salva richiesta + foto + manda email
         └── GET  /api/requests/[id]     → dettaglio singola richiesta
+
+Landing page components (app/components/landing/)
+  ├── Navbar.tsx
+  ├── HeroSection.tsx
+  ├── ServicesSection.tsx
+  ├── BenefitsSection.tsx
+  ├── CtaSection.tsx
+  └── Footer.tsx
 
 Server-side (Next.js API Routes)
   ├── lib/validators.ts    Zod schemas condivisi client/server
@@ -66,7 +75,8 @@ cp .env.example .env
 
 # 3. Avvia in sviluppo
 npm run dev
-# → http://localhost:3000 (reindirizza a /request)
+# → http://localhost:3000 (landing page)
+# → http://localhost:3000/request (form richiesta appuntamento)
 ```
 
 ### Variabili d'ambiente (`.env`)
@@ -184,7 +194,7 @@ GET /api/requests/[id]
 
 - **Assolute imports:** usa `@/` come alias root (es. `@/lib/validators`)
 - **TypeScript strict:** abilitato, no `any` implicito
-- **Componenti:** tutti in `app/` (no cartella `components/` al momento)
+- **Componenti:** i componenti della landing page sono in `app/components/landing/`; le pagine route restano direttamente in `app/`
 - **CSS:** classi Tailwind inline + classi componente definite in `globals.css` (`.form-input`, `.btn-primary`, ecc.)
 - **Validazione:** sempre doppia — Zod sul client (react-hook-form) e di nuovo sul server (API route)
 
