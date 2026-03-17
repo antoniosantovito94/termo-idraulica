@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Richiesta Appuntamento | Termoidraulica",
+  title: "Termoidraulica Lotito | Impianti idraulici, termici e di condizionamento",
   description:
-    "Compila il modulo per richiedere un appuntamento. Ti ricontatteremo al più presto.",
+    "Progettazione e installazione di impianti idraulici, termici, di condizionamento e industriali. Oltre 25 anni di esperienza. Richiedi un preventivo gratuito.",
 };
 
 export default function RootLayout({

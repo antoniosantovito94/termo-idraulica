@@ -4,6 +4,7 @@ import { useState, useCallback, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
+import Link from "next/link";
 import { clientSchema, type ClientFormValues } from "@/lib/validators";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -156,6 +157,15 @@ export default function RequestPage() {
     return (
       <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-md p-8 text-center">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand-green transition-colors mb-6"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Torna alla home
+          </Link>
           {/* Success icon */}
           <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
             <svg
@@ -207,6 +217,19 @@ export default function RequestPage() {
   return (
     <main className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="mx-auto max-w-2xl">
+        {/* ── Back link ── */}
+        <div className="mb-4">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand-green transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Torna alla home
+          </Link>
+        </div>
+
         {/* ── Header ── */}
         <div className="mb-8 text-center">
           <Image
