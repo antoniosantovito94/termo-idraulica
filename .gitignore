@@ -41,3 +41,8 @@ cred
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code
+.claude/
+.agents/
+skills-lock.json
